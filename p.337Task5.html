@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Making Moves: Reorder Sentences to Create Cohesion and Improve Flow</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #e3f2fd; padding: 20px; line-height: 1.5; }
+        .container { max-width: 850px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-top: 0; }
+        .subtitle { color: #555; margin-bottom: 20px; font-style: italic; }
+        
+        #sortable-list { list-style: none; padding: 0; }
+        .item { 
+            background: #fff; border: 1px solid #dcdde1; padding: 15px; margin: 8px 0; 
+            cursor: grab; border-radius: 6px; display: flex; align-items: flex-start;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .item:active { cursor: grabbing; transform: scale(1.02); background: #fdfdfd; }
+        .label-circle { 
+            background: #3498db; color: white; width: 24px; height: 24px; 
+            display: flex; align-items: center; justify-content: center; 
+            border-radius: 50%; margin-right: 15px; flex-shrink: 0; font-weight: bold; font-size: 14px;
+        }
+        
+        .btn-container { text-align: center; margin-top: 25px; gap: 10px; display: flex; justify-content: center; }
+        button { 
+            background: #27ae60; color: white; border: none; padding: 12px 25px; 
+            border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;
+        }
+        #hint-btn { background: #f39c12; }
+        button:hover { filter: brightness(90%); }
+        
+        #message { margin-top: 20px; font-weight: bold; padding: 15px; border-radius: 6px; display: none; text-align: center; }
+        .correct { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .wrong { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Making Moves: Reorder Sentences to Create Cohesion and Improve Flow</h2>
+    <p class="subtitle">Drag and drop the boxes to arrange the introduction in the correct logical order. You may click "Hint" if you get stuck. This task is modeled after Task Five, p. 337 in Academic Writing for Graduate Students (Swales & Feak, 2012). HTML created by Gemini AI, March 26 for Katie Coleman's ELI 522 course.</p>
+    
+    <div id="sortable-list"></div>
+
+    <div class="btn-container">
+        <button id="hint-btn" onclick="showHint()">Hint #1</button>
+        <button onclick="checkResult()">Check My Order</button>
+    </div>
+    <div id="message"></div>
+</div>
+
+<script>
+    const sentences = [
+        { id: 'a', t: "Furthermore, governments, foundations, non-profit organizations, and other stakeholders continue to work on how to provide cost-effective community-based services to members of the society including the elderly." },
+        { id: 'b', t: "In particular, the study sought to provide an avenue for them to communicate their understanding of university–community agency collaborations and identify how their agencies can work collaboratively with the university." },
+        { id: 'c', t: "According to the U.S. Bureau of the Census, it is anticipated that if this trend in growth continues, by the year 2030 there will be approximately 70 million Americans aged 65 or over." },
+        { id: 'd', t: "One approach has been an emphasis on community collaborations to address the planning and delivery of such services." },
+        { id: 'e', t: "Little, however, is known about participants' views of university-community collaborations." },
+        { id: 'f', t: "Several studies have examined issues related to the present and future provision and quality of community-based services for the elderly (Kelly, Knox & Gekoski, 1998; Buys & Rushworth, 1997; etc)." },
+        { id: 'g', t: "Human-service agency workers are major participants of university-based collaborations; hence, the purpose of this study was to investigate their views of community-based services to the elderly in northwest Ohio." },
+        { id: 'h', t: "Funding agencies (e.g., U.S. Department of Housing and Urban Development [HUD]) have encouraged university-community collaborations." },
+        { id: 'i', t: "The growing size of America's population of seniors has drawn attention to its economic and social well-being." },
+        { id: 'j', t: "America's population is growing older." },
+        { id: 'k', t: "An example is HUD's Community Outreach Partnership Centers initiative, which involves university faculty, staff, students, and community residents and agencies/groups as partners." }
+    ];
+
+    const correctOrder = ['j', 'i', 'c', 'f', 'a', 'd', 'h', 'k', 'e', 'g', 'b'];
+    let attempts = 0;
+
+    const listContainer = document.getElementById('sortable-list');
+
+    function init() {
+        const shuffled = [...sentences].sort(() => Math.random() - 0.5);
+        shuffled.forEach(s => {
+            const el = document.createElement('div');
+            el.className = 'item';
+            el.draggable = true;
+            el.dataset.id = s.id;
+            el.innerHTML = `<div class="label-circle">${s.id}</div><div>${s.t}</div>`;
+            el.addEventListener('dragstart', () => el.classList.add('dragging'));
+            el.addEventListener('dragend', () => el.classList.remove('dragging'));
+            listContainer.appendChild(el);
+        });
+    }
+
+    function showHint() {
+        alert("Hint: The introduction starts with 'j' and ends with 'b'. Look for transition words like 'Furthermore' (a) or 'However' (e) to connect the middle!");
+    }
+
+    listContainer.addEventListener('dragover', e => {
+        e.preventDefault();
+        const after = [...listContainer.querySelectorAll('.item:not(.dragging)')].reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = e.clientY - box.top - box.height / 2;
+            return (offset < 0 && offset > closest.offset) ? { offset, element: child } : closest;
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+        const dragging = document.querySelector('.dragging');
+        after ? listContainer.insertBefore(dragging, after) : listContainer.appendChild(dragging);
+    });
+
+    function checkResult() {
+        const current = Array.from(listContainer.querySelectorAll('.item')).map(el => el.dataset.id);
+        const msg = document.getElementById('message');
+        msg.style.display = 'block';
+        
+        if (JSON.stringify(current) === JSON.stringify(correctOrder)) {
+            msg.className = 'correct';
+            msg.innerHTML = "🎉 Excellent! You correctly reconstructed the Introduction.";
+        } else {
+            attempts++;
+            msg.className = 'wrong';
+            let hint = `Not quite. `;
+            if (attempts === 1) hint += `The first sentence is 'j'.`;
+            else if (attempts === 2) hint += `The first two sentences are 'j' and 'i'.`;
+            else if (attempts === 3) hint += `The first three sentences are 'j', 'i', and 'c'.`;
+            else hint += `Keep going! You've identified the first ${attempts} sentences correctly (based on the order j, i, c, f...).`;
+            
+            msg.innerHTML = hint;
+        }
+    }
+
+    init();
+</script>
+</body>
+</html>
