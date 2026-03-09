@@ -1,0 +1,19 @@
+/* This is your external stylesheet */
+body {
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: #e67e22; /* A nice classroom orange */
+}
+
+a {
+    color: #2980b9;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+a:hover {
+    background-color: #d6eaf8;
+}
