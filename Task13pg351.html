@@ -20,4 +20,112 @@
 
         .word-bank { background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
         .word-bank h4 { margin-top: 0; margin-bottom: 10px; color: #3498db; text-transform: uppercase; border-bottom: 1px solid #eee; }
-        .word-bank-list { display: flex; flex-wrap
+        .word-bank-list { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; min-height: 50px; }
+
+        .item { 
+            background: white; border: 1px solid #ddd; padding: 8px 12px; 
+            border-radius: 4px; cursor: grab; font-size: 0.95em; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .item:active { cursor: grabbing; }
+        .task-section { margin-bottom: 40px; }
+        hr { border: 0; height: 1px; background: #eee; margin: 40px 0; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Introductions: Move 2 Vocabulary</h1>
+    <div class="directions">
+        <p>Here are some "negative" verbs and adjectives that tend to cluster in Move 2. Arrange them in order from seeming definitely or strongly negative (- -) or only slightly negative (-).</p>
+        <p>This task is modeled after Task Thirteen, p. 351 in Academic Writing for Graduate Students (Swales & Feak, 2012). HTML created by Gemini AI, March '26 for Katie Coleman's ELI 522 course.</p>
+    </div>
+
+    <div class="task-section">
+        <div class="stem-box">However, previous research on deforestation has ...</div>
+        
+        <div class="word-bank">
+            <h4>Verbs</h4>
+            <ul id="verb-bank" class="word-bank-list">
+                <li class="item">a. concentrated on</li>
+                <li class="item">b. disregarded</li>
+                <li class="item">c. failed to consider</li>
+                <li class="item">d. ignored</li>
+                <li class="item">e. been limited to</li>
+                <li class="item">f. misinterpreted</li>
+                <li class="item">g. neglected to consider</li>
+                <li class="item">h. overestimated</li>
+                <li class="item">i. overlooked</li>
+                <li class="item">j. been restricted to</li>
+                <li class="item">k. suffered from</li>
+                <li class="item">l. underestimated</li>
+            </ul>
+        </div>
+
+        <div class="sorting-area">
+            <div class="box strong-box">
+                <h3>Strongly Negative (- -)</h3>
+                <ul id="verb-strong" class="word-bank-list" style="flex-direction: column;"></ul>
+            </div>
+            <div class="box slight-box">
+                <h3>Slightly Negative (-)</h3>
+                <ul id="verb-slight" class="word-bank-list" style="flex-direction: column;"></ul>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="task-section">
+        <div class="stem-box">Nevertheless, these attempts to establish a link between dental fillings and disease are at present ________.</div>
+
+        <div class="word-bank">
+            <h4>Adjectives</h4>
+            <ul id="adj-bank" class="word-bank-list">
+                <li class="item">a. controversial</li>
+                <li class="item">b. incomplete</li>
+                <li class="item">c. inconclusive</li>
+                <li class="item">d. misguided</li>
+                <li class="item">e. questionable</li>
+                <li class="item">f. unconvincing</li>
+                <li class="item">g. unsatisfactory</li>
+                <li class="item">h. ambivalent</li>
+            </ul>
+        </div>
+
+        <div class="sorting-area">
+            <div class="box strong-box">
+                <h3>Strongly Negative (- -)</h3>
+                <ul id="adj-strong" class="word-bank-list" style="flex-direction: column;"></ul>
+            </div>
+            <div class="box slight-box">
+                <h3>Slightly Negative (-)</h3>
+                <ul id="adj-slight" class="word-bank-list" style="flex-direction: column;"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize Drag and Drop for all lists
+    const verbLists = ['verb-bank', 'verb-strong', 'verb-slight'];
+    const adjLists = ['adj-bank', 'adj-strong', 'adj-slight'];
+
+    verbLists.forEach(id => {
+        new Sortable(document.getElementById(id), {
+            group: 'verbs',
+            animation: 150,
+            ghostClass: 'sortable-ghost'
+        });
+    });
+
+    adjLists.forEach(id => {
+        new Sortable(document.getElementById(id), {
+            group: 'adjs',
+            animation: 150,
+            ghostClass: 'sortable-ghost'
+        });
+    });
+</script>
+
+</body>
+</html>
