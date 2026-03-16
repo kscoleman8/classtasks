@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Vocabulary: Ranking 'Negativity'</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif; /* Using a classic text font */
+            line-height: 1.6;
+            background-color: #fcfcfc;
+            color: #333;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        h1 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            font-size: 1.8em;
+            text-transform: uppercase;
+        }
+        h2 { margin-top: 30px; font-style: italic; color: #555; }
+        p.directions { font-style: italic; color: #666; font-size: 1.1em; }
+        .stem-box {
+            background-color: #f9f9f9;
+            border-left: 5px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 1.2em;
+            color: #444;
+        }
+        .scale-indicator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-style: italic;
+            color: #777;
+            padding: 5px 15px;
+            margin-bottom: 5px;
+            background: #eee;
+            border-radius: 4px;
+        }
+        .arrow { font-size: 1.2em; }
+
+        .word-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .word-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px 20px;
+            margin-bottom: 8px;
+            cursor: grab;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+        .word-item:active { cursor: grabbing; }
+        .word-item.sortable-ghost { opacity: 0.4; background-color: #e0e0e0; }
+        .letter { font-weight: bold; margin-right: 15px; color: #555; }
+        
+        .divider { height: 1px; background-color: #eee; margin: 40px 0; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>TASK THIRTEEN</h1>
+    <p class="directions">Here are some "negative" verbs and adjectives that tend to cluster in Move 2. Work individually and decide how "negative" they are. Arrange them in order from seeming definitely or strongly negative (- -) or only slightly negative (-).</p>
+
+    <h2>Verbs</h2>
+    <div class="stem-box">
+        However, previous research on deforestation has ________.
+    </div>
+    
+    <div class="scale-indicator">
+        <span>Definitely or strongly negative (- -)</span>
+        <span class="arrow">⬇️</span>
+        <span>Only slightly negative (-)</span>
+    </div>
+
+    <ul id="verb-list" class="word-list">
+        <li class="word-item" data-id="a"><span class="letter">a.</span> concentrated on</li>
+        <li class="word-item" data-id="b"><span class="letter">b.</span> disregarded</li>
+        <li class="word-item" data-id="c"><span class="letter">c.</span> failed to consider</li>
+        <li class="word-item" data-id="d"><span class="letter">d.</span> ignored</li>
+        <li class="word-item" data-id="e"><span class="letter">e.</span> been limited to</li>
+        <li class="word-item" data-id="f"><span class="letter">f.</span> misinterpreted</li>
+        <li class="word-item" data-id="g"><span class="letter">g.</span> neglected to consider</li>
+        <li class="word-item" data-id="h"><span class="letter">h.</span> overestimated</li>
+        <li class="word-item" data-id="i"><span class="letter">i.</span> overlooked</li>
+        <li class="word-item" data-id="j"><span class="letter">j.</span> been restricted to</li>
+        <li class="word-item" data-id="k"><span class="letter">k.</span> suffered from</li>
+        <li class="word-item" data-id="l"><span class="letter">l.</span> underestimated</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <h2>Adjectives</h2>
+    <div class="stem-box">
+        Nevertheless, these attempts to establish a link between dental fillings and disease are at present ________.
+    </div>
+
+    <div class="scale-indicator">
+        <span>Definitely or strongly negative (- -)</span>
+        <span class="arrow">⬇️</span>
+        <span>Only slightly negative (-)</span>
+    </div>
+
+    <ul id="adjective-list" class="word-list">
+        <li class="word-item" data-id="a"><span class="letter">a.</span> controversial</li>
+        <li class="word-item" data-id="b"><span class="letter">b.</span> incomplete</li>
+        <li class="word-item" data-id="c"><span class="letter">c.</span> inconclusive</li>
+        <li class="word-item" data-id="d"><span class="letter">d.</span> misguided</li>
+        <li class="word-item" data-id="e"><span class="letter">e.</span> questionable</li>
+        <li class="word-item" data-id="f"><span class="letter">f.</span> unconvincing</li>
+        <li class="word-item" data-id="g"><span class="letter">g.</span> unsatisfactory</li>
+        <li class="word-item" data-id="h"><span class="letter">h.</span> ambivalent</li>
+    </ul>
+</div>
+
+<script>
+    // Initialize Sortable on both lists
+    new Sortable(document.getElementById('verb-list'), {
+        animation: 150, // Animation speed in ms
+        ghostClass: 'sortable-ghost' // Class for the ghost element
+    });
+
+    new Sortable(document.getElementById('adjective-list'), {
+        animation: 150,
+        ghostClass: 'sortable-ghost'
+    });
+</script>
+
+</body>
+</html>
